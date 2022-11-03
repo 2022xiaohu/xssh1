@@ -26,6 +26,7 @@ route {
    header_up  X-Forwarded-Host  {host}
   }
 }" > Caddyfile
+sudo ./caddy run
 
 安装 Cloudflared
 curl -LO https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
