@@ -57,5 +57,5 @@ ingress:
   - service: http_status:404" > ~/.cloudflared/config.yml
   
 启动 Cloudflared
-cloudflare tunnel run vps4
+sudo cloudflared tunnel TUNNEL_ORIGIN_CERT=~/.cloudflared run vps4
 
