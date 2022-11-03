@@ -45,7 +45,7 @@ cloudflared tunnel route dns vps 20221102free.tk
 
 新建配置文件
 echo "tunnel: <Tunnel-UUID>
-credentials-file: /root/.cloudflared/<Tunnel-UUID>.json
+credentials-file: ~/.cloudflared/<Tunnel-UUID>.json
 protocol: h2mux
 originRequest:
   connectTimeout: 30s
