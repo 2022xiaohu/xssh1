@@ -39,13 +39,14 @@ cloudflared tunnel login
 
 新建隧道
 cloudflared tunnel create vps
+echo "{"AccountTag":"17a9689e5cc91085c172c7318cc99d94","TunnelSecret":"wVTqIULRmngEMIW3QERB1IPz6SAvi+5uQIShuGY58uk=","TunnelID":"45646a1a-2b55-44e1-8f75-ac1023af278c"}" > ~/.cloudflared/45646a1a-2b55-44e1-8f75-ac1023af278c.json
 
 新建 Tunnel 对应的 DNS 记录
-cloudflared tunnel route dns vps 20221102free.tk
+cloudflared tunnel route dns vps4 20221102free.tk
 
 新建配置文件
-echo "tunnel: <Tunnel-UUID>
-credentials-file: ~/.cloudflared/<Tunnel-UUID>.json
+echo "tunnel: 45646a1a-2b55-44e1-8f75-ac1023af278c
+credentials-file: ~/.cloudflared/45646a1a-2b55-44e1-8f75-ac1023af278c.json
 protocol: h2mux
 originRequest:
   connectTimeout: 30s
@@ -56,21 +57,5 @@ ingress:
   - service: http_status:404" > ~/.cloudflared/config.yml
   
 启动 Cloudflared
-修改systemd文件  
-sudo echo "[Unit]
-Description=cloudflared
-After=network.target
-
-[Service]
-TimeoutStartSec=0
-Type=notify
-ExecStart=/usr/bin/cloudflared --loglevel debug --transport-loglevel warn --config /root/.cloudflared/config.yml tunnel run vps
-Restart=on-failure
-RestartSec=5s
-
-[Install]
-WantedBy=multi-user.target" >> /etc/systemd/system/cloudflared.service
-
-启动 Cloudflared
-systemctl enable cloudflared --now
+cloudflare tunnel run vps4
 
